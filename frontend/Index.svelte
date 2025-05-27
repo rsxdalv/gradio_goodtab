@@ -1,33 +1,36 @@
 <script context="module" lang="ts">
-	export { TABS } from "./shared/Tabs.svelte";
+	export { default as BaseTabItem } from "./shared/TabItem.svelte";
 </script>
 
 <script lang="ts">
 	import type { Gradio, SelectData } from "@gradio/utils";
-	import { createEventDispatcher } from "svelte";
-	import Tabs from "./shared/Tabs.svelte";
+	import TabItem from "./shared/TabItem.svelte";
 
-	const dispatch = createEventDispatcher();
-
-	export let visible = true;
 	export let elem_id = "";
 	export let elem_classes: string[] = [];
-	export let selected: number | string;
-	export let gradio: Gradio<{
-		change: never;
-		select: SelectData;
-	}>;
-
-	$: dispatch("prop_change", { selected });
+	export let label: string;
+	export let id: string | number;
+	export let gradio:
+		| Gradio<{
+				select: SelectData;
+		  }>
+		| undefined;
+	export let visible = true;
+	export let interactive = true;
+	export let order: number;
+	export let scale: number;
 </script>
 
-<Tabs
-	{visible}
+<TabItem
 	{elem_id}
 	{elem_classes}
-	bind:selected
-	on:change={() => gradio.dispatch("change")}
-	on:select={(e) => gradio.dispatch("select", e.detail)}
+	{label}
+	{visible}
+	{interactive}
+	{id}
+	{order}
+	{scale}
+	on:select={({ detail }) => gradio?.dispatch("select", detail)}
 >
 	<slot />
-</Tabs>
+</TabItem>
