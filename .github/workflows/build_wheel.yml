@@ -33,7 +33,7 @@ jobs:
 
       # just install directly https://github.com/rsxdalv/gradio_goodtabs/releases/download/v0.0.3/gradio_goodtabs-0.0.3-py3-none-any.whl
       - name: Install gradio_goodtabs
-        run: python -m pip install gradio_goodtabs
+        run: python -m pip install https://github.com/rsxdalv/gradio_goodtabs/releases/download/v0.0.3/gradio_goodtabs-0.0.3-py3-none-any.whl
 
       - name: Build the wheel
         run: gradio cc build
