@@ -30,6 +30,8 @@ jobs:
       # install npm deps inside of frontend/
       - name: Install npm deps
         run: cd frontend && npm install
+      - name: gradio cc install
+        run: gradio cc install
 
       - name: Build the wheel
         run: gradio cc build
