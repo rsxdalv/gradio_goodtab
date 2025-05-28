@@ -26,7 +26,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install Deps
-        run: python -m pip install .[dev]
+        run: python -m pip install -e .[dev]
       # install npm deps inside of frontend/
       - name: Install npm deps
         run: cd frontend && npm install
