@@ -25,11 +25,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Deps
-        run: python -m pip install -e .[dev]
-      # install npm deps inside of frontend/
-      - name: Install npm deps
-        run: cd frontend && npm install
+      - name: Install gradio
+        run: python -m pip install gradio==5.5.0
+      # - name: Install Deps
+      #   run: python -m pip install -e .[dev]
+      # # install npm deps inside of frontend/
+      # - name: Install npm deps
+      #   run: cd frontend && npm install
       - name: gradio cc install
         run: gradio cc install
 
